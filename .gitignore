@@ -1,0 +1,6 @@
+.env
+backups/
+*.sql
+*.tar.gz
+.vscode/
+node_modules/

@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mzb_db
+    restart: unless-stopped
+    env_file:
+      - .env
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - mzb_network
+
+  wordpress:
+    image: wordpress:6.4-apache
+    container_name: mzb_wp
+    depends_on:
+      - db
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${WORDPRESS_PORT:-8000}:80"
+    volumes:
+      # Bind mount the whole WordPress directory from the repo so ALL WP files live in the repo
+      - ./wp:/var/www/html
+      # Use a named Docker volume for uploads so the container can write even if the host FS
+      # doesn't allow chown() (common with some mounts like NTFS or restrictive mounts).
+      - uploads_data:/var/www/html/wp-content/uploads
+    networks:
+      - mzb_network
+
+volumes:
+  db_data:
+  uploads_data:
+
+networks:
+  mzb_network: {}
