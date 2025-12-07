@@ -23,10 +23,7 @@ services:
     ports:
       - "${WORDPRESS_PORT:-8000}:80"
     volumes:
-      # Bind mount the whole WordPress directory from the repo so ALL WP files live in the repo
       - ./wp:/var/www/html
-      # Use a named Docker volume for uploads so the container can write even if the host FS
-      # doesn't allow chown() (common with some mounts like NTFS or restrictive mounts).
       - uploads_data:/var/www/html/wp-content/uploads
     networks:
       - mzb_network
