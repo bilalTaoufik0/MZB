@@ -27,8 +27,10 @@ if [ ! -f "$WPFILE" ]; then
   exit 1
 fi
 
-echo "Restoring DB from $DBFILE..."
-cat "$DBFILE" | docker compose exec -T db sh -c "mysql -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE"
+echo "Restoring WP files from $WPFILE..."
+export MSYS2_ARG_CONV_EXCL="*"
+cat "$WPFILE" | docker compose exec -T wordpress sh -c "tar xzf - -C /var/www/html"
+
 
 echo "Restoring WP files from $WPFILE..."
 cat "$WPFILE" | docker compose exec -T wordpress tar xzf - -C /var/www/html

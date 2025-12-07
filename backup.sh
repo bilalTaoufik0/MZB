@@ -6,21 +6,20 @@ if [ ! -f .env ]; then
   exit 1
 fi
 
-# Charge les variables MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE, etc.
 source .env
 
+TIMESTAMP=$(date +"%Y%m%d%H%M")
+
+DBFILE="backups/db_${TIMESTAMP}.sql"
+WPFILE="backups/wp_files_${TIMESTAMP}.tar.gz"
+
 mkdir -p backups
-TS=$(date +%Y%m%d%H%M)
 
-echo "Dumping MySQL to backups/db_$TS.sql..."
-# --no-tablespaces pour éviter l'erreur de privilèges avec MySQL 8
-docker compose exec -T db sh -c \
-  "exec mysqldump --no-tablespaces -u\"\$MYSQL_USER\" -p\"\$MYSQL_PASSWORD\" \"\$MYSQL_DATABASE\"" \
-  > "backups/db_$TS.sql"
+echo "Dumping MySQL to $DBFILE..."
+docker compose exec -T db sh -c "mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE" > "$DBFILE"
 
-echo "Archiving WordPress files to backups/wp_files_$TS.tar.gz..."
-docker compose exec -T wordpress tar czf - -C /var/www/html . > "backups/wp_files_$TS.tar.gz"
+echo "Archiving WordPress files to $WPFILE..."
+export MSYS2_ARG_CONV_EXCL="*"
+docker compose exec -T wordpress sh -c "tar czf - -C /var/www/html ." > "$WPFILE"
 
-echo "✅ Backup saved in backups/"
-echo " - backups/db_$TS.sql"
-echo " - backups/wp_files_$TS.tar.gz"
+echo "Backup complete."
