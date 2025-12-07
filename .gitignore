@@ -1,6 +1,11 @@
+# Fichier d'environnement local
 .env
-backups/
-*.sql
-*.tar.gz
+
+# Volume MySQL (on versionne le dump .sql dans backups/ à la place)
+mysql/data/
+
+# Config éditeur
 .vscode/
+
+# Node (si tu fais du tooling front)
 node_modules/
