@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WooCommerce - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-11-12 18:28:05+0000\n"
+"PO-Revision-Date: 2025-12-04 16:54:18+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,10 @@ msgstr ""
 "X-Generator: GlotPress/4.0.3\n"
 "Language: fr\n"
 "Project-Id-Version: Plugins - WooCommerce - Stable (latest release)\n"
+
+#: src/Internal/Abilities/AbilitiesCategories.php:47
+msgid "REST API operations for WooCommerce resources including products, orders, and other store data."
+msgstr "Opérations de l’API REST pour les ressources WooCommerce, notamment les produits, les commandes et d’autres données de la boutique."
 
 #: assets/client/blocks/add-to-cart-with-options-variation-description/block.json
 msgctxt "block description"
@@ -232,8 +236,8 @@ msgstr "Exemple de téléchargement de fichier.pdf"
 msgid "Dummy Downloadable Product"
 msgstr "Produit téléchargeable fictif"
 
-#: src/Internal/Abilities/REST/RestAbilityFactory.php:115
-#: src/Internal/Abilities/REST/RestAbilityFactory.php:138
+#: src/Internal/Abilities/REST/RestAbilityFactory.php:125
+#: src/Internal/Abilities/REST/RestAbilityFactory.php:148
 msgid "Unique identifier for the resource"
 msgstr "Identifiant unique pour la ressource"
 
@@ -20523,7 +20527,7 @@ msgid "%1$s (update to version %2$s is available)"
 msgstr "%1$s (une mise à jour de la version %2$s est disponible)"
 
 #. translators: %s: URL of WooCommerce.com subscriptions tab.
-#: includes/admin/helper/class-wc-helper-updater.php:837
+#: includes/admin/helper/class-wc-helper-updater.php:864
 msgid "Please visit the <a href=\"%s\" target=\"_blank\">subscriptions page</a> and renew to continue receiving updates."
 msgstr "Consultez la <a href=\"%s\" target=\"_blank\">page des abonnements</a> et renouvelez votre abonnement pour continuer à recevoir des mises à jour."
 
@@ -44342,7 +44346,7 @@ msgstr "Virtuel"
 msgid "Downloadable"
 msgstr "Téléchargeable"
 
-#: includes/abstracts/abstract-wc-order.php:2512
+#: includes/abstracts/abstract-wc-order.php:2517
 #: includes/admin/class-wc-admin-dashboard.php:496
 #: includes/admin/list-tables/class-wc-admin-list-table-orders.php:123
 #: includes/admin/meta-boxes/class-wc-meta-box-order-data.php:214

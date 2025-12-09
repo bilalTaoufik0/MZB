@@ -3,91 +3,73 @@
  Template: oceanwp
 */
 
+/* ========================================================================
+   1. VARIABLES GLOBALES & BASE
+   ======================================================================== */
+
 :root {
     --mzb-yellow: #FFC000;
     --mzb-dark: #282828;
     --mzb-light: #F5F5F5;
+    --mzb-font: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-/* Global */
-
+/* Style global du body */
 body {
-    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--mzb-font);
     background-color: var(--mzb-light);
     color: #111;
+    margin: 0;
 }
 
-/* Titres */
-
-h1, h2, h3, h4 {
+/* Titres génériques */
+h1, h2, h3, h4, h5 {
+    font-family: var(--mzb-font);
     font-weight: 700;
-    color: var(--mzb-dark);
     letter-spacing: .02em;
+    color: var(--mzb-dark);
 }
 
-/* Header / menu */
+/* Petit utilitaire : texte jaune */
+.mzb-text-yellow {
+    color: var(--mzb-yellow);
+}
 
-#site-header, #site-header-inner {
+
+/* ========================================================================
+   2. HEADER / MENU PRINCIPAL
+   ======================================================================== */
+
+#site-header,
+#site-header-inner {
     background-color: #ffffff;
     border-bottom: 1px solid #E5E5E5;
 }
 
+/* Liens du menu principal */
 #site-navigation-wrap .menu > li > a {
     font-weight: 500;
     padding: 14px 18px;
 }
 
+/* État actif / hover */
 #site-navigation-wrap .menu > li > a:hover,
 #site-navigation-wrap .menu > li.current-menu-item > a {
     color: var(--mzb-dark);
     border-bottom: 2px solid var(--mzb-yellow);
 }
 
-/* Boutons principaux */
 
-.woocommerce a.button,
-.woocommerce button.button,
-.woocommerce input.button,
-button,
-input[type="submit"],
-.wp-block-button__link {
-    background: var(--mzb-yellow);
-    color: #111 !important;
-    border-radius: 999px;
-    border: none;
-    padding: 0.75em 1.8em;
-    font-weight: 600;
-    box-shadow: 0 12px 30px rgba(0,0,0,.25);
-    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
-}
+/* ========================================================================
+   3. RÉGLAGES GÉNÉRAUX PAGES / BLOC GUTENBERG
+   ======================================================================== */
 
-.woocommerce a.button:hover,
-.woocommerce button.button:hover,
-.woocommerce input.button:hover,
-button:hover,
-input[type="submit"]:hover,
-.wp-block-button__link:hover {
-    filter: brightness(1.05);
-    transform: translateY(-2px);
-    box-shadow: 0 18px 40px rgba(0,0,0,.35);
-}
-
-/* Variante bouton secondaire (bord blanc) */
-.mzb-btn-secondary {
-    background: transparent !important;
-    color: #fff !important;
-    border: 1px solid #fff !important;
-    box-shadow: none !important;
-}
-
-
-
-/* Cacher le header de page "Accueil" sur la home */
+/* Page d'accueil : on cache le titre "Accueil" ajouté par le thème */
 .home .page-header {
     display: none;
 }
 
-/* Virer le padding inutile au-dessus du contenu */
+/* On enlève le padding au-dessus du contenu sur la home */
 .home .site-main {
     padding-top: 0;
 }
@@ -96,286 +78,201 @@ input[type="submit"]:hover,
     margin-top: 0;
 }
 
-/* Hero : prendre vraiment toute la largeur de la fenêtre */
-.home .mzb-hero {
+/* Blocs Gutenberg alignfull : prendre vraiment toute la largeur */
+.site-main .entry-content > .alignfull {
     width: 100vw;
+    max-width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
 }
 
 
+/* ========================================================================
+   4. HERO DE LA HOME (Bannière "Formations en IA")
+   ======================================================================== */
 
-/* === HERO ACCUEIL (bloc Bannière avec classe mzb-hero) === */
-
+/* Bloc Bannière avec la classe mzb-hero */
 .mzb-hero.wp-block-cover {
     min-height: 70vh;
     padding: 120px 0;
     border-radius: 0;
 }
 
-/* Container interne centré mais avec texte à gauche */
+/* Container interne du hero */
 .mzb-hero .wp-block-cover__inner-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 80px;
 }
 
-/* Groupe texte (classe mzb-hero-content) */
+/* Groupe qui contient le texte (classe sur le bloc Groupe) */
 .mzb-hero-content {
     max-width: 560px;
     text-align: left;
     color: #ffffff;
 }
 
-/* Titre */
+/* Titre du hero */
 .mzb-hero-content h1 {
     font-size: 3rem;
     line-height: 1.15;
     margin-bottom: 18px;
 }
 
-/* Texte intro */
+/* Paragraphe du hero */
 .mzb-hero-content p {
     font-size: 0.98rem;
     max-width: 520px;
     margin-bottom: 24px;
 }
 
-/* Boutons */
+/* Groupe des deux boutons (bloc Groupe) */
 .mzb-hero-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
 }
 
-/* Bouton secondaire (si tu mets cette classe sur le 2e bouton) */
-.mzb-btn-secondary {
-    background: transparent !important;
-    color: #ffffff !important;
-    border: 1px solid #ffffff !important;
-    box-shadow: none !important;
+/* Neutraliser le style par défaut des boutons WP dans ce groupe */
+.mzb-hero-buttons .wp-block-button {
+    margin: 0;
 }
 
-/* Responsive */
+.mzb-hero-buttons .wp-block-button__link {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    color: inherit;
+}
+
+/* Bouton jaune plein : bloc bouton avec classe mzb-btn-primary */
+.mzb-hero-buttons .mzb-btn-primary .wp-block-button__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--mzb-yellow);
+    color: #111111 !important;
+    border-radius: 12px;
+    border: none;
+    padding: 0.9em 2.6em;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 14px 32px rgba(0,0,0,.35);
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+/* Bouton contour blanc : bloc bouton avec classe mzb-btn-secondary */
+.mzb-hero-buttons .mzb-btn-secondary .wp-block-button__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #ffffff !important;
+    border-radius: 12px;
+    border: 2px solid #ffffff;
+    padding: 0.9em 2.6em;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: none;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease;
+}
+
+/* Hover des boutons du hero */
+.mzb-hero-buttons .mzb-btn-primary .wp-block-button__link:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(0,0,0,.45);
+}
+
+.mzb-hero-buttons .mzb-btn-secondary .wp-block-button__link:hover {
+    background-color: rgba(255,255,255,0.08);
+    transform: translateY(-2px);
+}
+
+/* Responsive hero */
 @media (max-width: 960px) {
     .mzb-hero.wp-block-cover {
         padding: 80px 0;
     }
-
     .mzb-hero .wp-block-cover__inner-container {
         padding: 0 24px;
     }
-
     .mzb-hero-content h1 {
         font-size: 2.2rem;
     }
 }
 
 
+/* ========================================================================
+   5. SECTION "FORMATIONS POPULAIRES"
+   ======================================================================== */
 
-
-
-/* === SECTION FORMATION POPULAIRES === */
-
-.mzb-section-populaires {
-    position: relative;
-    max-width: 1200px;
-    margin: 80px auto;
-    padding: 80px 40px 70px;
-    background: #ffffff;
-    border-radius: 28px;
-    box-shadow: 0 25px 70px rgba(0,0,0,.30);
-    overflow: hidden;
-}
-
-/* Diagonale jaune à gauche */
-.mzb-section-populaires::before {
-    content: "";
-    position: absolute;
-    width: 60%;
-    height: 180%;
-    background: var(--mzb-yellow);
-    top: -40%;
-    left: -30%;
-    transform: rotate(-25deg);
-    box-shadow: 0 30px 70px rgba(0,0,0,.40);
-}
-
-/* Contenu au-dessus de la diagonale */
-.mzb-section-populaires > * {
-    position: relative;
-    z-index: 1;
-}
-
-/* Titre + texte */
-
-.mzb-section-populaires h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    letter-spacing: 0.12em;
-    margin-bottom: 10px;
-}
-
-.mzb-section-populaires > p {
-    text-align: center;
-    font-size: 0.95rem;
-    max-width: 640px;
-    margin: 0 auto 40px;
-}
-
-/* === Grille WooCommerce dans la section populaires === */
-
-.mzb-section-populaires ul.mzb-popular-trainings.products {
-    list-style: none;
-    margin: 10px 0 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 28px;
-}
-
-/* On neutralise le style de base WooCommerce sur ces produits */
-.mzb-section-populaires ul.mzb-popular-trainings.products li.product {
-    margin: 0;
-}
-
-/* Carte produit façon Figma */
-
-.mzb-section-populaires ul.mzb-popular-trainings.products li.product {
-    border-radius: 26px;
-    overflow: hidden;
-    background: linear-gradient(#f8f8f8, #2a2a2a);
-    box-shadow: 0 18px 50px rgba(0,0,0,.40);
-    color: #ffffff;
-    text-align: left;
-    padding: 0;
-    position: relative;
-    transition: transform .15s ease, box-shadow .15s ease;
-}
-
-/* Enlever le bouton “Ajouter au panier” dans cette section (facultatif) */
-.mzb-section-populaires ul.mzb-popular-trainings.products li.product .button {
-    display: none;
-}
-
-/* Bandeau jaune en haut avec le titre */
-
-.mzb-section-populaires ul.mzb-popular-trainings.products li.product .woocommerce-loop-product__title {
-    margin: 0;
-    padding: 10px 14px;
-    background: var(--mzb-yellow);
-    font-size: 0.95rem;
-    font-weight: 600;
-}
-
-/* Image */
-
-.mzb-section-populaires ul.mzb-popular-trainings.products li.product a.woocommerce-LoopProduct-link {
-    display: block;
-}
-
-.mzb-section-populaires ul.mzb-popular-trainings.products li.product a.woocommerce-LoopProduct-link img {
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-    display: block;
-}
-
-/* Bas de carte : prix + meta */
-
-.mzb-section-populaires ul.mzb-popular-trainings.products li.product .price {
-    display: block;
-    padding: 8px 16px 14px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--mzb-yellow);
-}
-
-/* Hover */
-
-.mzb-section-populaires ul.mzb-popular-trainings.products li.product:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 24px 70px rgba(0,0,0,.55);
-}
-
-
-/* ==== SECTION FORMATION POPULAIRES (BANNIERE FIGMA) ==== */
-
-/* La bannière elle-même */
+/* Bannière pleine largeur qui englobe la section */
 .mzb-section-populaires.wp-block-cover {
-    position: relative;
-    min-height: 500px;
     padding: 80px 0 90px;
-    border-radius: 0;
-    box-shadow: 0 25px 70px rgba(0,0,0,.25);
-    background-color: #ffffff;
+    background-color: var(--mzb-light); /* gris clair uniforme */
 }
 
-/* Contenu centré dans la bannière */
+/* Container interne aligné avec le contenu */
 .mzb-section-populaires .wp-block-cover__inner-container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
 }
 
-/* Diagonale jaune à gauche (comme Figma) */
-.mzb-section-populaires::before {
-    content: "";
-    position: absolute;
-    width: 55%;
-    height: 160%;
-    background: var(--mzb-yellow);
-    top: -30%;
-    left: -25%;
-    transform: rotate(-25deg);
-    box-shadow: 0 30px 70px rgba(0,0,0,.40);
+/* Bloc interne (Groupe) qui contient titre + texte + cartes */
+.mzb-section-populaires-inner {
+    position: relative;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 60px 50px 70px;
+    overflow: visible;
 }
 
-/* Empêcher le contenu de passer derrière */
-.mzb-section-populaires .wp-block-group {
+/* On fait passer le contenu au-dessus des éventuels décors */
+.mzb-section-populaires-inner > * {
     position: relative;
     z-index: 1;
 }
 
-/* Titre + texte */
-
-.mzb-section-populaires h2 {
+/* Titre de la section */
+.mzb-section-populaires-inner h2 {
     text-align: center;
-    font-size: 2.4rem;
+    font-size: 2.8rem;         /* plus gros comme sur Figma */
     letter-spacing: 0.12em;
     margin-bottom: 10px;
     color: var(--mzb-dark);
 }
 
-.mzb-section-populaires .mzb-text-yellow {
-    color: var(--mzb-yellow);
-}
-
-.mzb-section-populaires p {
+/* Paragraphe d'introduction */
+.mzb-section-populaires-inner > p {
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 1rem;
     max-width: 680px;
     margin: 0 auto 40px;
-    color: #222;
+    color: #ffffff !important; /* texte blanc par-dessus l'image de fond */
 }
 
-/* ==== CARTES (dans le shortcode) ==== */
-
-.mzb-popular-trainings {
+/* Grille contenant les cartes (wrapper généré par le shortcode) */
+.mzb-popular-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px;
     margin-top: 20px;
 }
 
-/* Carte Figma : gradient vertical + ombre */
-
+/* Carte de formation */
 .mzb-training-card {
     border-radius: 26px;
     overflow: hidden;
-    background: linear-gradient(#fdfdfd 0%, #2a2a2a 100%);
+    background: #ffffff;
     box-shadow: 0 18px 50px rgba(0,0,0,.40);
-    color: #ffffff;
+    color: #111;
+    text-align: center;
     transition: transform .15s ease, box-shadow .15s ease;
 }
 
@@ -385,26 +282,26 @@ input[type="submit"]:hover,
     color: inherit;
 }
 
-/* Bandeau jaune titre */
-
+/* Bandeau jaune titre en haut de la carte */
 .mzb-card-header {
     background: var(--mzb-yellow);
     padding: 10px 16px;
 }
 
 .mzb-card-title {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
+    color: #111111;
 }
 
-/* Zone image centrale */
-
+/* Image de la formation */
 .mzb-card-image {
-    min-height: 180px;
+    height: 260px;                 /* hauteur fixe */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background: #f8f8f8;
 }
 
 .mzb-card-image img {
@@ -413,65 +310,420 @@ input[type="submit"]:hover,
     object-fit: cover;
 }
 
-.mzb-card-image-placeholder {
-    width: 100%;
-    height: 100%;
-}
-
-/* Bas de carte : niveau | catégorie */
-
+/* Bas de carte : niveau / catégorie */
 .mzb-card-footer {
-    padding: 12px 18px 16px;
-    font-size: 0.9rem;
+    padding: 14px 18px 16px;
+    background: #ffffff;
 }
 
 .mzb-card-meta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    font-size: 0.95rem;
     text-transform: uppercase;
-    font-size: 0.78rem;
     letter-spacing: .08em;
     opacity: 0.9;
 }
 
 .mzb-card-sep {
+    margin: 0 6px;
     opacity: 0.8;
 }
 
-/* Hover */
-
+/* Hover carte */
 .mzb-training-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 24px 70px rgba(0,0,0,.55);
 }
 
-/* Responsive */
+/* Responsive section formations populaires */
+@media (max-width: 960px) {
+    .mzb-section-populaires .wp-block-cover__inner-container {
+        padding: 0 20px;
+    }
 
-@media (max-width: 900px) {
-    .mzb-popular-trainings {
+    .mzb-section-populaires-inner {
+        padding: 50px 24px 60px;
+    }
+
+    .mzb-popular-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 640px) {
-    .mzb-popular-trainings {
+    .mzb-popular-grid {
         grid-template-columns: 1fr;
-    }
-    .mzb-section-populaires .wp-block-cover__inner-container {
-        padding: 0 20px;
     }
 }
 
 
+/* ========================================================================
+   6. SECTION "TÉMOIGNAGES"
+   ======================================================================== */
+
+.mzb-section-testimonials.wp-block-cover {
+    padding: 80px 0 90px;
+    background-color: var(--mzb-dark);
+    color: #ffffff;
+}
+
+.mzb-section-testimonials .wp-block-cover__inner-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Groupe interne */
+.mzb-section-testimonials-inner {
+    text-align: center;
+}
+
+/* Titre */
+.mzb-section-testimonials-inner h2 {
+    font-size: 2.4rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+/* Intro */
+.mzb-section-testimonials-inner > p {
+    font-size: 0.95rem;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    color: #e5e7eb;
+}
+
+/* Liste des cartes */
+.mzb-testimonials {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Carte témoignage : bloc blanc avec "M" à droite */
+.mzb-testimonial-card {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 24px 28px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.45);
+    color: #111111;
+}
+
+/* Partie texte */
+.mzb-testimonial-main {
+    flex: 1 1 auto;
+    text-align: left;
+}
+
+.mzb-testimonial-content p {
+    margin: 0 0 10px;
+    font-size: 0.95rem;
+    color: #333333;
+}
+
+.mzb-testimonial-author {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #111111;
+}
+
+/* Bloc "M" sur la droite */
+.mzb-testimonial-mark {
+    flex: 0 0 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: rgba(255,192,0,0.55);
+    padding-left: 20px;
+}
+
+/* Étoiles des témoignages (note 1 à 5) */
+.mzb-testimonial-rating {
+    margin-bottom: 8px;
+}
+
+.mzb-testimonial-rating .mzb-star {
+    font-size: 1rem;
+    margin-right: 2px;
+    color: #dddddd;          /* étoiles vides */
+}
+
+.mzb-testimonial-rating .mzb-star.is-filled {
+    color: var(--mzb-yellow); /* étoiles remplies */
+}
+
+/* Responsive témoignages */
+@media (max-width: 768px) {
+    .mzb-section-testimonials .wp-block-cover__inner-container {
+        padding: 0 20px;
+    }
+
+    .mzb-testimonial-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 20px 22px;
+    }
+
+    .mzb-testimonial-mark {
+        align-self: flex-end;
+        margin-top: 8px;
+        padding-left: 0;
+        font-size: 3rem;
+    }
+}
 
 
+/* ========================================================================
+   7. PAGES PRODUIT & MON COMPTE (WooCommerce)
+   ======================================================================== */
+
+/* Fiches produit : forcer le texte en noir sur la colonne de droite */
+.single-product .summary,
+.single-product .summary p,
+.single-product .summary span,
+.single-product .summary div {
+    color: #111111 !important;
+}
+
+/* Page "Mon compte" : 2 colonnes alignées en haut */
+.woocommerce-account .woocommerce {
+    max-width: 1100px;
+    margin: 40px auto 60px;
+    display: flex;              /* navigation + contenu côte à côte */
+    align-items: flex-start;    /* alignés en haut */
+    gap: 40px;
+}
+
+/* Navigation à gauche */
+.woocommerce-account .woocommerce-MyAccount-navigation {
+    flex: 0 0 260px;
+}
+
+/* Contenu à droite */
+.woocommerce-account .woocommerce-MyAccount-content {
+    flex: 1 1 auto;
+    padding: 0;
+}
+
+/* Messages WooCommerce plus lisibles */
+.woocommerce-account .woocommerce-message,
+.woocommerce-account .woocommerce-info {
+    background-color: #f5f5f5;
+    color: #111111;
+}
+
+/* Mon compte responsive : bascule en une colonne */
+@media (max-width: 768px) {
+    .woocommerce-account .woocommerce {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .woocommerce-account .woocommerce-MyAccount-navigation,
+    .woocommerce-account .woocommerce-MyAccount-content {
+        width: 100%;
+    }
+}
 
 
+/* ========================================================================
+   8. PAGE CONTACT & FORMULAIRE
+   ======================================================================== */
+
+/* Version 1 : wrapper spécifique (Groupe avec classe mzb-contact-section) */
+.mzb-contact-section {
+    max-width: 800px;
+    margin: 0 auto 80px;  /* centré */
+}
+
+/* Version 2 : fallback si on n'utilise pas le wrapper (classe body .page-contact) */
+.page-contact .site-main {
+    padding-top: 40px;
+}
+
+.page-contact .entry-content {
+    max-width: 800px;
+    margin: 0 auto 80px;
+}
+
+/* Titre de la page Contact */
+.page-contact .entry-title {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+}
+
+/* Intro sous le titre (premier paragraphe) */
+.page-contact .entry-content > p:first-of-type,
+.mzb-contact-section > p:first-of-type {
+    font-size: 0.98rem;
+    margin-bottom: 24px;
+}
+
+/* -------- Styles communs au formulaire (Contact Form 7) -------- */
+
+/* Spacing entre les lignes du formulaire */
+.page-contact form.wpcf7-form p,
+.mzb-contact-section form.wpcf7-form p {
+    margin-bottom: 14px;
+}
+
+/* Labels ("Votre nom", etc.) si utilisés */
+.page-contact form.wpcf7-form label,
+.mzb-contact-section form.wpcf7-form label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* Champs texte, email, objet, etc. */
+.page-contact form.wpcf7-form input[type="text"],
+.page-contact form.wpcf7-form input[type="email"],
+.page-contact form.wpcf7-form input[type="tel"],
+.page-contact form.wpcf7-form input[type="url"],
+.page-contact form.wpcf7-form input[type="number"],
+.page-contact form.wpcf7-form input[type="date"],
+.page-contact form.wpcf7-form textarea,
+.mzb-contact-section form.wpcf7-form input[type="text"],
+.mzb-contact-section form.wpcf7-form input[type="email"],
+.mzb-contact-section form.wpcf7-form input[type="tel"],
+.mzb-contact-section form.wpcf7-form input[type="url"],
+.mzb-contact-section form.wpcf7-form input[type="number"],
+.mzb-contact-section form.wpcf7-form input[type="date"],
+.mzb-contact-section form.wpcf7-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+    font-size: 0.95rem;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+/* Focus des champs */
+.page-contact form.wpcf7-form input[type="text"]:focus,
+.page-contact form.wpcf7-form input[type="email"]:focus,
+.page-contact form.wpcf7-form input[type="tel"]:focus,
+.page-contact form.wpcf7-form input[type="url"]:focus,
+.page-contact form.wpcf7-form input[type="number"]:focus,
+.page-contact form.wpcf7-form input[type="date"]:focus,
+.page-contact form.wpcf7-form textarea:focus,
+.mzb-contact-section form.wpcf7-form input[type="text"]:focus,
+.mzb-contact-section form.wpcf7-form input[type="email"]:focus,
+.mzb-contact-section form.wpcf7-form input[type="tel"]:focus,
+.mzb-contact-section form.wpcf7-form input[type="url"]:focus,
+.mzb-contact-section form.wpcf7-form input[type="number"]:focus,
+.mzb-contact-section form.wpcf7-form input[type="date"]:focus,
+.mzb-contact-section form.wpcf7-form textarea:focus {
+    outline: none;
+    border-color: var(--mzb-yellow);
+    box-shadow: 0 0 0 2px rgba(255,192,0,.25);
+}
+
+/* Textarea : hauteur mini + redimension vertical uniquement */
+.page-contact form.wpcf7-form textarea,
+.mzb-contact-section form.wpcf7-form textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+/* Bouton ENVOYER */
+.page-contact form.wpcf7-form input[type="submit"],
+.mzb-contact-section form.wpcf7-form input[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--mzb-yellow);
+    color: #111111;
+    border-radius: 999px;
+    border: none;
+    padding: 0.8em 2.4em;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 14px 32px rgba(0,0,0,.3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+.page-contact form.wpcf7-form input[type="submit"]:hover,
+.mzb-contact-section form.wpcf7-form input[type="submit"]:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(0,0,0,.4);
+}
 
 
+/* ========================================================================
+   9. FOOTER
+   ======================================================================== */
+
+/* Forcer la couleur du texte du footer (zone blanche) en noir */
+#footer-widgets,
+#footer-widgets .footer-widget,
+#footer-widgets .footer-widget p,
+#footer-widgets .footer-widget a,
+.mzb-footer-title,
+.mzb-footer-logo {
+    color: #111111 !important;
+}
+
+/* Liens du menu dans le footer */
+#footer-widgets .menu a,
+#footer-widgets .wp-block-navigation a {
+    color: #111111 !important;
+}
+
+/* Bloc "Follow Us On" : icônes réseaux sociaux */
+.mzb-footer-socials {
+    display: flex;
+    gap: 12px;
+    margin: 6px 0 0;
+    align-items: center;
+}
+
+.mzb-footer-socials .mzb-footer-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid #111111;
+    overflow: hidden;
+}
+
+.mzb-footer-socials .mzb-footer-icon img {
+    max-width: 20px;
+    max-height: 20px;
+    display: block;
+}
+
+/* Hover : fond noir + icône blanche */
+.mzb-footer-socials .mzb-footer-icon:hover {
+    background-color: #111111;
+}
+
+.mzb-footer-socials .mzb-footer-icon:hover img {
+    filter: invert(1);
+}
+
+/* Réduire les images dans les widgets du footer (icônes réseaux sociaux) */
+#footer-widgets img {
+    max-width: 40px;
+    height: auto;
+    display: inline-block;
+}
 
 
-
-
+/* ===== Mise en page Checkout : marge à gauche ===== */
+.woocommerce-checkout .woocommerce {
+    margin-left: 40px;   /* marge côté gauche */
+    margin-bottom: 80px; /* petit espace avec le footer */
+}
