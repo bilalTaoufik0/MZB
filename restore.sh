@@ -6,6 +6,7 @@ if [ ! -f .env ]; then
   exit 1
 fi
 
+# Charge les variables (MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE, etc.)
 source .env
 
 if [ -z "$1" ] || [ -z "$2" ]; then
@@ -27,12 +28,15 @@ if [ ! -f "$WPFILE" ]; then
   exit 1
 fi
 
-echo "Restoring WP files from $WPFILE..."
-export MSYS2_ARG_CONV_EXCL="*"
+echo ">>> Assure-toi que les conteneurs tournent (./start.sh ou docker compose up -d)."
+
+echo ">>> Restauration des fichiers WordPress depuis $WPFILE ..."
+# (optionnel) vider le dossier avant :
+# docker compose exec -T wordpress sh -c "rm -rf /var/www/html/*"
+
 cat "$WPFILE" | docker compose exec -T wordpress sh -c "tar xzf - -C /var/www/html"
 
+echo ">>> Restauration de la base de données depuis $DBFILE ..."
+docker compose exec -T db sh -c "mysql -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE" < "$DBFILE"
 
-echo "Restoring WP files from $WPFILE..."
-cat "$WPFILE" | docker compose exec -T wordpress tar xzf - -C /var/www/html
-
-echo "Restore complete."
+echo ">>> Restauration terminée."
