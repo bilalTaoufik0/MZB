@@ -85,7 +85,6 @@ function mzb_register_level_taxonomy() {
 /**
  * Shortcodes :
  *   [mzb_formations_populaires]
- *   [mzb_cartes_populaires] (alias)
  *
  * -> Affiche X formations WooCommerce les plus vendues
  *    sous forme de cartes, pour la section "FORMATIONS POPULAIRES".
@@ -95,7 +94,6 @@ function mzb_register_level_taxonomy() {
  * @return string HTML rendu.
  */
 add_shortcode( 'mzb_formations_populaires', 'mzb_popular_formations_shortcode' );
-add_shortcode( 'mzb_cartes_populaires', 'mzb_popular_formations_shortcode' );
 function mzb_popular_formations_shortcode( $atts ) {
 
 	// Attributs avec valeurs par défaut.
