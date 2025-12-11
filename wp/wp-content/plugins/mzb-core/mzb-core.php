@@ -204,7 +204,7 @@ function mzb_popular_formations_shortcode( $atts ) {
  */
 add_action( 'woocommerce_after_add_to_cart_button', 'mzb_product_digital_notice' );
 function mzb_product_digital_notice() {
-	echo '<p class="mzb-digital-notice">📌 Produit numérique : accès aux fichiers à télécharger après le paiement. Aucun envoi physique.</p>';
+	echo '<p class="mzb-digital-notice">ATTENTION : accès aux fichiers à télécharger après le paiement pendant 24h. Aucun envoi physique.</p>';
 }
 
 /*
